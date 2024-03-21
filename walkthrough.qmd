@@ -1,0 +1,31 @@
+---
+title: "Hello, Quarto"
+format: html
+author: "Teja"
+editor: visual
+jupyter: nbstata
+code-fold: true
+---
+
+```{stata}
+sysuse auto, clear
+describe
+```
+```{stata}
+ assert mpg > 0 & mpg < 100
+```
+```{stata}
+summ weight
+```
+```{stata}
+*| output: asis
+display "The variable weight has minimum value "  %4.2f `r(min)' " and " ///
+         "has maximum value "   %4.2f `r(max)' "."
+```
+```{stata}
+*| output: asis
+display "The variable weight has range "  %4.2f `r(max)'-`r(min)' "."
+```
+```{stata}
+scatter mpg weight, mcolor(blue%50)
+```
